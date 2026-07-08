@@ -2,37 +2,43 @@ import jason
 import pandas            as pd
 import request
 
-# loading test dataset
-df10 = pd.read_csv( '../Dataset/test.csv')
-df_store_raw = pd.read_csv('../Dataset/store.csv')
+def load_dataset(store_id):
+    # loading test dataset
+    df10 = pd.read_csv( '../Dataset/test.csv')
+    df_store_raw = pd.read_csv('../Dataset/store.csv')
 
-# merge test dataset + store
-df_test = pd.merge(df10OB, df_store_raw, how='left', on='Store')
+    # merge test dataset + store
+    df_test = pd.merge(df10OB, df_store_raw, how='left', on='Store')
 
-# choose store for prediction
-df_test = df_test[df_test['Store']==22]
+    # choose store for prediction
+    df_test = df_test[df_test['Store']== store_id]
 
-# remove closed days
-df_test = df_test[df_test['Open'] != 0]
-df_test = df_test[~df_test['Open'].isnull()]
-df_test = df_test.drop( 'Id', axis=1 )
+    # remove closed days
+    df_test = df_test[df_test['Open'] != 0]
+    df_test = df_test[~df_test['Open'].isnull()]
+    df_test = df_test.drop( 'Id', axis=1 )
 
-# convert Dataframe to json
-data = json.dumps( df_test.to_dict( orient='records'))
+    # convert Dataframe to json
+    data = json.dumps( df_test.to_dict( orient='records'))
 
-# API Call
-#url = 'https://rossmann-model-test.herokuapp.com/rossmann/predict'
-header = {'Content-type': 'application/json' }
-data = data
+    return data
 
-r = requests.post( url, data=data, headers=header)
-print('Status Code {}'.format(r.status_code))
+def predict(data):
+    # API Call
+    #url = 'https://rossmann-model-test.herokuapp.com/rossmann/predict'
+    header = {'Content-type': 'application/json' }
+    data = data
 
-d1 = pd.DataFrame( r.json(), columns=r.json()[0].keys() )
+    r = requests.post( url, data=data, headers=header)
+    print('Status Code {}'.format(r.status_code))
 
-d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()
+    d1 = pd.DataFrame( r.json(), columns=r.json()[0].keys() )
 
-for i in range (len(d2)):
-    print ('Store Number {} will sell R${:,.2f} in the next 6 weeks'.format(
-        d2.loc[i, 'store'],
-        d2.loc[i, 'prediction'] ) )
+    return d1
+
+#d2 = d1[['store', 'prediction']].groupby('store').sum().reset_index()
+#
+#for i in range (len(d2)):
+#    print ('Store Number {} will sell R${:,.2f} in the next 6 weeks'.format(
+#        d2.loc[i, 'store'],
+#        d2.loc[i, 'prediction'] ) )
