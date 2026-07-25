@@ -2,7 +2,7 @@
 
 ## Previsão de vendas em Projeto Rossmann
 
-image('img/MindmapHypothesis.png')
+![Rossmann_Store]('/img/rossmann_store.jpg')
 
 ### 1. Problema de negócio
 
