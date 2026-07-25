@@ -3,7 +3,7 @@
 ## Previsão de vendas em Projeto Rossmann
 
 ![Rossmann_Store]('/img/ROSSMANN.png')
-![Rossmann_Store]('https://github.com/MarinaOnohara/Rossmann_Project/blob/main/img/ROSSMANN.png')
+![Rossmann]('../img/MindmapHypothesis.png')
 
 ### 1. Problema de negócio
 
