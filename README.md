@@ -98,7 +98,14 @@ Para seleção das variáveis numéricas foi realizado o Gráfico de Correlaçã
 
 ### Top 3 Insights
 
+H1. Lojas com maior sortimentos deveriam vender mais.
+FALSA. Lojas com MAIOR SORTIMENTO vendem MENOS.
 
+H2. Lojas com competidores mais proximos deverima vender menos.
+FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
+
+H11. lojas deveriam vender menos aos finais de semana.
+VERDADEIRA. Lojas vendem MENOS aos finais de semana
 
 ### Modelo de Machile Learning
 
