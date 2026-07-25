@@ -2,7 +2,7 @@
 
 ## Previsão de vendas em Projeto Rossmann
 
-![Rossmann_Store]('/img/rossmann_store.jpg')
+![Rossmann_Store]('/img/rossmann_store.png')
 
 ### 1. Problema de negócio
 
