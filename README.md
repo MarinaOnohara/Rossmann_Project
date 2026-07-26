@@ -61,39 +61,39 @@ Identificação e entendimento do problema de negócio. Identificar potencial pr
 2. Entendimento do negócio:
 Entendimento do core business do negócio a fim de identificar estratégia de análise a ser implementada e foco na resolução do problema.
 
-3. Coleta de dados;
+3. Coleta de dados:
 Seleção de dados disponibilizados em 3 bases em formato csv (train.csv, test.csv e store.csv) no site Kaggle. Rossmann Store Sales. Disponível em:<https://www.kaggle.com/competitions/rossmann-store-sales/data>. Acesso em: 25 mai. 2026.
 
-4. Limpeza de dados;
+4. Limpeza de dados:
 Foram realizadas limpeza e tratamento dos dados; remoção dos dados dos dias em que as lojas foram fechadadas; remoção de lojas cujas vendas fossem zero; inclusão de maior distância observada no conjunto de dados para as lojas que não sem informações no campo "Competition Distance" para efeito de cálculos posteriores e remoção da coluna “customers” pois não seria relevante para o dimensão analítica do trabalho atual.
 
-5. Exploração de dados;
+5. Exploração de dados:
 Foi realizada padronização do formato dos títulos das variáveis, formatação do tipos e grandezas dos campos de análise, tratamento ou remoção de campos vazios, análise descritiva exploratória para identificar cenário inicial e volume de dados, seleção de atributos numéricos e categórios para análise posterior e desenvolvimento de mapa mental de hipóteses a serem validadas ou refutadas posteriormente.
 
 ![mind_map](/img/MindmapHypothesis.png "Mind Map")
 
-Hipóteses validadas:
-1. Lojas com maior sortimento devem vender mais
-2. Lojas com concorrentes mais próximos devem vender menos
-3. Lojas com concorrentes mais antigos devem vender mais
-4. Lojas onde os produtos custam menos por mais tempo (promoções ativas) devem vender mais
-5. Lojas com mais dias de promoção devem vender mais
-6. Lojas com promoções mais estendidas devem vender mais
-7. Lojas abertas no feriado de Natal devem vender mais
-8. Lojas devem vender mais ao longo dos anos
-9. Lojas devem vender mais no segundo semestre
-10. As lojas devem vender mais após o dia 10 de cada mês
-11. Lojas devem vender menos nos finais de semana
-12. Lojas devem vender menos durante as férias escolares
-13. Lojas que abrem aos domingos devem vender mais
+#### 13 Hipóteses validadas:
+    1. Lojas com maior sortimento devem vender mais.
+    2. Lojas com concorrentes mais próximos devem vender menos.
+    3. Lojas com concorrentes mais antigos devem vender mais.
+    4. Lojas onde os produtos custam menos por mais tempo (promoções ativas) devem vender mais.
+    5. Lojas com mais dias de promoção devem vender mais.
+    6. Lojas com promoções mais estendidas devem vender mais.
+    7. Lojas abertas no feriado de Natal devem vender mais.
+    8. Lojas devem vender mais ao longo dos anos.
+    9. Lojas devem vender mais no segundo semestre.
+    10. As lojas devem vender mais após o dia 10 de cada mês.
+    11. Lojas devem vender menos nos finais de semana.
+    12. Lojas devem vender menos durante as férias escolares.
+    13. Lojas que abrem aos domingos devem vender mais.
 
 Com a exploração de dados é possível identificar insights e selecionar variáveis relevantes através de análises univariadas, biváriadas e multivariadas para seleção das variáveis numéricas e categóricas do conjunto.
 Para seleção das variáveis numéricas foi realizado o Gráfico de Correlação e para seleção das variáveis categóricas foram analizadas Matriz de Confusão e Qui-quadrado (Cramer's V) para verificar se existe associação entre variáveis categóricas.
 
-6. Modelagem de dados;
-7. Algoritmo de Machine Learning;
-8. Avaliação do açgoritmo;
-9. Modelo em produção.
+6. Modelagem de dados:
+7. Algoritmo de Machine Learning:
+8. Avaliação do açgoritmo:
+9. Modelo em produção:
 
 
 ### Top 3 Insights
