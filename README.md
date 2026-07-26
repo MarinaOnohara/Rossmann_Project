@@ -101,13 +101,13 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
 
 ### Top 3 Insights
 
-    H1. Lojas com maior sortimentos deveriam vender mais.
-        FALSA. Lojas com MAIOR SORTIMENTO vendem MENOS.
-![Hitótese 1](/img/H1.png "Hitótese 1")
-
     H2. Lojas com competidores mais proximos deverima vender menos.
         FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
 ![Hitótese 1](/img/H2.png "Hitótese 2")
+
+    H4. Lojas com promoções ativas por mais tempo deveriam vender mais.
+        FALSA Lojas vendem menos depois de um certo período de promoção
+![Hitótese 4](/img/H4.png "Hitótese 4")
 
     H11. lojas deveriam vender menos aos finais de semana.
         VERDADEIRA. Lojas vendem MENOS aos finais de semana
