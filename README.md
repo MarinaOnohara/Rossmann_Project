@@ -171,6 +171,7 @@ A estratégia para definição do conjunto valores de hiperparâmetros (Hyperpar
 Os hiperparâmetros de melhor performance para o XGBoost foram:
 
 |Parâmetro         |Valor|
+|------------------|-----|
 | n_estimators     |3000 |
 | eta              |0.03 |
 | max_depth        |5    |
