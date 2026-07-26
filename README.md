@@ -114,7 +114,7 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
 ![Hitótese 11](/img/H11.png "Lojas vendem MENOS aos finais de semana")
 
 6. Modelagem de Dados:
-A etapa de proparação dos dados consistiu em aplicar Rescaling para variáveis não Gaussianas, isto é, variáveis sem distribuição normal. Já para a transformação de variáveis categóricas em numéricas mantendo a natureza do conjunto de dados foram utilizados Encodings a fim de torná-las mensuráveis.
+A etapa de proparação dos dados consistiu em aplicar Rescaling para variáveis não Gaussianas, isto é, variáveis sem distribuição normal. Já para a transformação de variáveis categóricas em numéricas mantendo a natureza do conjunto de dados foram utilizados encodings a fim de torná-las mensuráveis.
 One hot Encoding para categorização binária (0,1) para cada tipo de resposta positiva da categoria "state_holiday" ser identificada com 1 na label da variável.
 Label Encoding para categorização em número aleatório cada tipo de resposta positiva da variável "store_type".
 Ordinal Encoding para categorização ordinal de acordo com a graduação da categoria "assortment".
@@ -131,17 +131,68 @@ Cramer's V - variáveis categóricas
 ![Cramer V - variáveis categórica](/img/cramer_v.png "Cramer's V")
 
 
-Para o treinamento do modelo foram selecionadas s variáveis independentes (features) mais relevantes para a variável resposta pelo método Boruta a fim de obter a melhor acurácia para o modelo.
+Para o treinamento do modelo foram selecionadas as variáveis independentes (features) mais relevantes pelo método Boruta a fim de obter a melhor acurácia para o modelo.
 
 ### Modelo de Machile Learning
 
-7. Algoritmo de Machine Learning:
+O modelo foi treinado na base de dados train.csv e validado na base de teste.csv de mesma estrutura com dados novos.
+Foram treinados cinco métodos de modelos: Random Forest Regressor, Average Model, XGBoost Regressor, Linear Regression e Linear Regression - Lasso. Sendo o Average Model (modelo de média) o modelo de referência para performance de comparação dos demais modelos.
+
+#### Single Performance
+
+|         Model Name         |     MAE     |    MAPE   |     RMSE    |
+|----------------------------|-------------|-----------|-------------|
+| Random Forest Regressor    | 678.546030  | 9.981612  | 1008.892840 |
+| Average Model              | 1354.800353 | 45.505116 | 1835.135542 |
+| XGBoost Regressor          | 1693.859561 | 25.159246 | 2472.602486 |
+| Linear Regression          | 1867.089774 | 29.269403 | 2671.049215 |
+| Linear Regression - Lasso  | 1891.704881 | 28.910566 | 2744.451737 |
+
+#### Real Performance - Cross Validation
+
+|         Model Name         |      MAE CV      |    MAPE CV   |      RMSE CV     |
+|----------------------------|------------------|--------------|------------------|
+| Random Forest Regressor    | 837.21+/-217.56  | 11.61+/-2.31 | 1255.74+/-318.1  |
+| XGBoost Regressor          | 1864.01+/-290.82 | 25.51+/-1.33 | 2687.23+/-427.74 |
+| Linear Regression          | 2081.73+/-295.63 | 30.26+/-1.66 | 2952.52+/-468.37 |
+| Linear Regression - Lasso  | 2116.38+/-341.5  | 29.2+/-1.18  | 3057.75+/-504.26 |
+
+Foi aplicado método de Cross Validation sobre o conjunto de dados train.csv que foi dividido em cinco partes para que o modelo fosse treinado e avaliado repetidamente. Nesse processo a performance real do modelo foi o resultado da média de 5 cortes e desvio padrão do treino e teste. O que fornece uma estimativa mais robusta da capacidade de generalização do modelo.
+
+Após análise dos modelos com menores valores de erro, a Random Forest e o XGBoost foram  osque apresentaram melhores performances. Apesar do Random Forest ter menor erro, optei pelo modelo de XGBoost por sua capacidade de otimização de recursos se comparado ao modelo Random Forest.
+
 
 ### Machine Learning Performance
-8. Avaliação do algoritmo:
+
+#### Hyperparameter Fine Tuning
+
+A estratégia para definição do conjunto valores de hiperparâmetros (Hyperparameter Fine Tuning) do modelo escolhido, XGBoots, para maximizar o aprendizado escolhida foi o Random Search. Essa estratégia consiste em testar combinações aleatórias no modelo de forma rápida e exige menor capacidade de processamento se comparado às estratégias Grid Search e Bayesian Search.
+
+Os hiperparâmetros de melhor performance para o XGBoost foram:
+
+|Parâmetro         |Valor|
+| n_estimators     |3000 |
+| eta              |0.03 |
+| max_depth        |5    |
+| subsample        |0.7  |
+| colsample_bytree |0.7  |
+| min_child_weight |3    |
+
+
+#### Performance do Modelo
+
+O resultado do modelo XGBoot Single Performance com os valores de Fine Tunning foi:
+|        Model Name         |      MAE     |     MAPE    |     RMSE    |
+|---------------------------|--------------|-------------|-------------|
+| XGBoost Regressor         | 776.013223   | 11.621024   | 1122.124425 |
+
+![Performance XGBoost](/img/performance.png "Performance XGBoost")
+
+A análise gráfica demonstram flutuações nas previsão por período, portanto é possível que hajam oscilações em mudanças bruscas de valores.
+Já os gráficos inferiores demonstram resultados generalizados em conformidade muito próxima à normal no que tange a distribuição de erros e consequentemente a acertividade da previsão do modelo.
 
 ### Resultado de Negócios
-9. Modelo em produção:
+O modelo apresenta capacidade de generalização com erro de variação de 776 unidade de vendas em média, o que representa 11,62% para mais ou para menos em relação aos valores reais de venda.
 
 #### Deploy
 Hospedado no Render.com.
@@ -150,3 +201,4 @@ Hospedado no Render.com.
 - `model/model_rossmann.pkl` — modelo treinado
 
 ### Conclusões
+Pude concluir que para um primeiro ciclo de projeto o modelo tem capacidade de generalização e acertividade muito próxima à normal. Para que seja mais efetivo são necessários testes recorrentes a fim de ajustar os parâmetros do modelo à realidade.
