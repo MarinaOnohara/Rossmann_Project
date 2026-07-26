@@ -1,7 +1,7 @@
 # Rossmann Project
 
 ## Previsão de vendas em Projeto Rossmann
-![Rossmann_Store](/img/ROSSMANN.PNG"Rossmann Store")
+![Rossmann_Store](/img/ROSSMANN.png "Rossmann Store")
 
 ### 1. Problema de negócio
 
@@ -53,7 +53,7 @@ O formato de entrega contém informações de total de vendas da rede de loja, v
 #### Planejamento do Processo de Análise
 
 O processo de desenvolvimento do projeto teve como base o método CRSIP-DM, aplicando os seguintes passos:
-![Rossmann_Process](/img/processo.PNG"Processo CRISP")
+![Rossmann_Process](/img/processo.png "Processo CRISP")
 
 1. Questão do negócio:
 Identificação e entendimento do problema de negócio. Identificar potencial previsão de demandapor loja para ajudar os gerentes de ponto de venda a manter o foco no que é mais importante para eles: seus clientes e suas equipes!
@@ -70,7 +70,7 @@ Foram realizadas limpeza e tratamento dos dados; remoção dos dados dos dias em
 5. Exploração de dados;
 Foi realizada padronização do formato dos títulos das variáveis, formatação do tipos e grandezas dos campos de análise, tratamento ou remoção de campos vazios, análise descritiva exploratória para identificar cenário inicial e volume de dados, seleção de atributos numéricos e categórios para análise posterior e desenvolvimento de mapa mental de hipóteses a serem validadas ou refutadas posteriormente.
 
-![mind_map](/img/MindmapHypothesis.PNG"Mind Map")
+![mind_map](/img/MindmapHypothesis.png "Mind Map")
 
 Hipóteses validadas:
 1. Lojas com maior sortimento devem vender mais
