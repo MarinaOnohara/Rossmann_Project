@@ -114,12 +114,22 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
 ![Hitótese 11](/img/H11.png "Lojas vendem MENOS aos finais de semana")
 
 Para identificar se existe associação entre variáveis numéricas foi utilizada análise multivariada de Matriz de Correlação.
+
 ![Matriz de Correlação](/img/correlacao.png "Matriz de Correlação")
 
+
 Para para verificar se existe associação entre variáveis categóricas foram utilizadas análise multivariada de Matriz de Confusão, com as combinações entre as variáveis categóricas e Cramer's V, uma medida de associação entre duas variáveis categóricas baseada no teste Qui-Quadrado.
+Variáveis categóricas possuem apenas correlação positiva ou nenhuma correlação, sendo 0 menor correlação e 1 maior correlação.
+
 ![Cramer V](/img/cramer_v.png "Cramer's V")
 
 6. Modelagem de dados:
+A etapa de proparação dos dados consistiu em aplicar Rescaling para variáveis não Gaussianas, isto é, variáveis sem distribuição normal. Já para a transformação de variáveis categóricas em numéricas mantendo a natureza do conjunto de dados foram utilizados Encodings a fim de torná-las mensuráveis.
+One hot Encoding para categorização binária (0,1) para cada tipo de resposta positiva da categoria "state_holiday" ser identificada com 1 na label da variável.
+Label Encoding para categorização em número aleatório cada tipo de resposta positiva da variável "store_type".
+Ordinal Encoding para categorização ordinal de acordo com a graduação da categoria "assortment".
+A distribuição das variáveis foi realizada na etapa anterior de análise univariada e como não há variável com distribuição normal, nenhuma das variáveis foi normalizada.
+
 7. Algoritmo de Machine Learning:
 8. Avaliação do algoritmo:
 9. Modelo em produção:
