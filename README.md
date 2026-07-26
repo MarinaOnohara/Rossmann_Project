@@ -103,15 +103,15 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
 
     H2. Lojas com competidores mais proximos deverima vender menos.
         FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
-![Hitótese 1](/img/H2.png "Hitótese 2")
+![Hitótese 1](/img/H2.png "Lojas com competidores MAIS PROXIMOS vendem MAIS")
 
     H4. Lojas com promoções ativas por mais tempo deveriam vender mais.
         FALSA Lojas vendem menos depois de um certo período de promoção
-![Hitótese 4](/img/H4.png "Hitótese 4")
+![Hitótese 4](/img/H4.png "Lojas vendem menos depois de um certo período de promoção")
 
     H11. lojas deveriam vender menos aos finais de semana.
         VERDADEIRA. Lojas vendem MENOS aos finais de semana
-![Hitótese 1](/img/H11.png "Hitótese 11")
+![Hitótese 11](/img/H11.png "Lojas vendem MENOS aos finais de semana")
 
 Para seleção das variáveis numéricas foi realizado cálculo de correlação e para seleção das variáveis categóricas foram analizadas Matrizes de Confusão e Qui-quadrado (Cramer's V).
 
