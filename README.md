@@ -1,6 +1,6 @@
 # Rossmann Project
 
-## Previsão de vendas em Projeto Rossmann
+## Previsão de vendas diárias por 6 semanas
 ![Rossmann_Store](/img/ROSSMANN.png "Rossmann Store")
 
 ### 1. Problema de negócio
@@ -62,17 +62,29 @@ Identificação e entendimento do problema de negócio. Identificar potencial pr
 Entendimento do core business do negócio a fim de identificar estratégia de análise a ser implementada e foco na resolução do problema.
 
 3. Coleta de dados:
-Seleção de dados disponibilizados em 3 bases em formato csv (train.csv, test.csv e store.csv) no site Kaggle. Rossmann Store Sales. Disponível em:<https://www.kaggle.com/competitions/rossmann-store-sales/data>. Acesso em: 25 mai. 2026.
+Seleção de dados disponibilizados em 3 bases em formato csv (train.csv, test.csv e store.csv) no site Kaggle. Rossmann Store Sales. Disponível em: <https://www.kaggle.com/competitions/rossmann-store-sales/data>. Acesso em: 25 mai. 2026.
 
 4. Limpeza de dados:
-Foram realizadas limpeza e tratamento dos dados; remoção dos dados dos dias em que as lojas foram fechadadas; remoção de lojas cujas vendas fossem zero; inclusão de maior distância observada no conjunto de dados para as lojas que não sem informações no campo "Competition Distance" para efeito de cálculos posteriores e remoção da coluna “customers” pois não seria relevante para o dimensão analítica do trabalho atual.
+Foram realizadas limpeza e tratamento de formatação dos dados de acordo com padrões documentados; padronização do formato dos títulos das variáveis; formatação do tipos e grandezas dos campos de análise; remoção de dados dias com lojas fechadadas; remoção de lojas sem vendas; inclusão de valor de maior distância observada no conjunto de dados cujas lojas não apresentassem informações no campo "Competition Distance"; tratamento ou remoção de campos vazios e remoção de atributo “customers” cuja dimenssão é irrelevante para a análise atual.
 
 5. Exploração de dados:
-Foi realizada padronização do formato dos títulos das variáveis, formatação do tipos e grandezas dos campos de análise, tratamento ou remoção de campos vazios, análise descritiva exploratória para identificar cenário inicial e volume de dados, seleção de atributos numéricos e categórios para análise posterior e desenvolvimento de mapa mental de hipóteses a serem validadas ou refutadas posteriormente.
+A etapa de exploração de dados consistiu no levantamento das hipóteses e análise descritiva dos dados para visão do cenário inicial de informações, volume de dados e seleção de variáveis numéricas e categóricas para análise univariada.
+Foi desenvolvido mapa mental de hipóteses para levantamento de trinte e uma hipóteses a serem validadas ou refutadas através da análise exploratória dos dados (EDA) em 5 campos do fenômeno analisado vendas: loja, localização, clientes, produtos e período.
 
 ![mind_map](/img/MindmapHypothesis.png "Mind Map")
 
-#### 13 Hipóteses validadas:
+Elementos de mapa mental de hipóteses:
+    - Fenômeno: campo a ser medido ou modelado (variável resposta = y);
+    - Agentes: agentes que impactam seu fenômeno (variáveis independentes = x);
+    - Atributos do agente: características dos atributos.
+
+Hipóteses são geradas por:
+    - Surpresa: insight com hipóteses não analisadas;
+    - Teste de crença: verificar se a contraposição da crença é validada ou não. Isto é, validação da hipótese nula (H₀) ou da hipótese alternativa (H₁).
+
+Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de análises univariadas, bivariadas e multivariadas de variáveis numéricas e categóricas do conjunto.
+
+#### 13 Hipóteses:
     1. Lojas com maior sortimento devem vender mais.
     2. Lojas com concorrentes mais próximos devem vender menos.
     3. Lojas com concorrentes mais antigos devem vender mais.
@@ -87,25 +99,26 @@ Foi realizada padronização do formato dos títulos das variáveis, formataçã
     12. Lojas devem vender menos durante as férias escolares.
     13. Lojas que abrem aos domingos devem vender mais.
 
-Com a exploração de dados é possível identificar insights e selecionar variáveis relevantes através de análises univariadas, biváriadas e multivariadas para seleção das variáveis numéricas e categóricas do conjunto.
-Para seleção das variáveis numéricas foi realizado o Gráfico de Correlação e para seleção das variáveis categóricas foram analizadas Matriz de Confusão e Qui-quadrado (Cramer's V) para verificar se existe associação entre variáveis categóricas.
+### Top 3 Insights
+
+    H1. Lojas com maior sortimentos deveriam vender mais.
+        FALSA. Lojas com MAIOR SORTIMENTO vendem MENOS.
+![Hitótese 1](/img/H1.png "Hitótese 1")
+
+    H2. Lojas com competidores mais proximos deverima vender menos.
+        FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
+![Hitótese 1](/img/H2.png "Hitótese 2")
+
+    H11. lojas deveriam vender menos aos finais de semana.
+        VERDADEIRA. Lojas vendem MENOS aos finais de semana
+![Hitótese 1](/img/H11.png "Hitótese 11")
+
+Para seleção das variáveis numéricas foi realizado cálculo de correlação e para seleção das variáveis categóricas foram analizadas Matrizes de Confusão e Qui-quadrado (Cramer's V).
 
 6. Modelagem de dados:
 7. Algoritmo de Machine Learning:
-8. Avaliação do açgoritmo:
+8. Avaliação do algoritmo:
 9. Modelo em produção:
-
-
-### Top 3 Insights
-
-H1. Lojas com maior sortimentos deveriam vender mais.
-FALSA. Lojas com MAIOR SORTIMENTO vendem MENOS.
-
-H2. Lojas com competidores mais proximos deverima vender menos.
-FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
-
-H11. lojas deveriam vender menos aos finais de semana.
-VERDADEIRA. Lojas vendem MENOS aos finais de semana
 
 ### Modelo de Machile Learning
 
