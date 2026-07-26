@@ -123,12 +123,12 @@ Para seleção de variáveis relevantes para o modelo, foi aplocado método para
 
 Matriz de Correlação - variáveis numéricas
 
-![Matriz de Correlação](/img/correlacao.png "Matriz de Correlação")
+![Matriz de Correlação - variáveis numérica](/img/correlacao.png "Matriz de Correlação")
 
 
 Cramer's V - variáveis categóricas
 
-![Cramer V](/img/cramer_v.png "Cramer's V")
+![Cramer V - variáveis categórica](/img/cramer_v.png "Cramer's V")
 
 
 Para o treinamento do modelo foram selecionadas s variáveis independentes (features) mais relevantes para a variável resposta pelo método Boruta a fim de obter a melhor acurácia para o modelo.
