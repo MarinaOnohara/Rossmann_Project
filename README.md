@@ -113,7 +113,11 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
         VERDADEIRA. Lojas vendem MENOS aos finais de semana
 ![Hitótese 11](/img/H11.png "Lojas vendem MENOS aos finais de semana")
 
-Para seleção das variáveis numéricas foi realizado cálculo de correlação e para seleção das variáveis categóricas foram analizadas Matrizes de Confusão e Qui-quadrado (Cramer's V).
+Para identificar se existe associação entre variáveis numéricas foi utilizada análise multivariada de Matriz de Correlação.
+![Matriz de Correlação](/img/correlacao.png "Matriz de Correlação")
+
+Para para verificar se existe associação entre variáveis categóricas foram utilizadas análise multivariada de Matriz de Confusão, com as combinações entre as variáveis categóricas e Cramer's V, uma medida de associação entre duas variáveis categóricas baseada no teste Qui-Quadrado.
+![Cramer V](/img/cramer_v.png "Cramer's V")
 
 6. Modelagem de dados:
 7. Algoritmo de Machine Learning:
