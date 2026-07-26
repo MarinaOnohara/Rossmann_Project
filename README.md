@@ -121,12 +121,12 @@ Ordinal Encoding para categorização ordinal de acordo com a graduação da cat
 A distribuição das variáveis foi realizada na etapa anterior de análise univariada e como não há variável com distribuição normal, nenhuma das variáveis foi normalizada.
 Para seleção de variáveis relevantes para o modelo, foi aplocado método para cálculo de correlação para variáveis numéricas e Cramer's V, uma medida de associação entre duas variáveis categóricas baseada no teste Qui-Quadrado para variáveis categóricas.
 
-Matriz de Correlação.
+Matriz de Correlação - variáveis numéricas
 
 ![Matriz de Correlação](/img/correlacao.png "Matriz de Correlação")
 
 
-Cramer's V
+Cramer's V - variáveis categóricas
 
 ![Cramer V](/img/cramer_v.png "Cramer's V")
 
