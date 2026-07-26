@@ -101,12 +101,12 @@ Das 31 hipóteses levantadas, 13 foram selecionadas para validação através de
 
 ### Top 3 Insights
 
-    H2. Lojas com competidores mais proximos deverima vender menos.
-        FALSA. Lojas com competidores MAIS PROXIMOS vendem MAIS
+    H2. Lojas com competidores mais próximos deveriam vender menos.
+        FALSA. Lojas com competidores MAIS PRÓXIMOS vendem MAIS
 ![Hitótese 1](/img/H2.png "Lojas com competidores MAIS PROXIMOS vendem MAIS")
 
     H4. Lojas com promoções ativas por mais tempo deveriam vender mais.
-        FALSA Lojas vendem menos depois de um certo período de promoção
+        FALSA Lojas vendem MENOS depois de um certo período de promoção
 ![Hitótese 4](/img/H4.png "Lojas vendem menos depois de um certo período de promoção")
 
     H11. lojas deveriam vender menos aos finais de semana.
