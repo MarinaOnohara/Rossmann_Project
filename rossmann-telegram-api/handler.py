@@ -1,12 +1,12 @@
 import os
-import json
+import pickle
 import pandas as pd
 import sys
 import time
 
 from flask import Flask, request, Response
 from rossmann.Rossmann import Rossmann
-from xgboost import XGBRegressor
+
 
 def log(msg):
     # print + flush garante que a linha aparece IMEDIATAMENTE nos logs do Render
@@ -21,9 +21,7 @@ log(f"arquivos na raiz: {os.listdir('.')}")
 
 log("carregando modelo...")
 #loading model
-#model = json.load(open('model/model_rossmann.json', 'rb'))
-model = XGBRegressor()
-model.load_model("model/model_rossmann.json")
+model = pickle.load( open('model/model_rossmann.pkl', 'rb'))
 log(f"modelo carregado em {time.time() - t0:.2f}s")
 
 log("inicializando Flask app...")
@@ -33,7 +31,7 @@ log("Flask app criado")
 
 @app.route( '/rossmann/predict', methods=['POST'] )
 def rossmann_predict():
-    test_json = request.get_json(silent=True)
+    test_json = request.get_json()
     
     if test_json: # sehouver dados
         try:
@@ -60,47 +58,14 @@ def rossmann_predict():
             return df_response
         
         except Exception as e:
-            log(f"ERRO: {type(e).__name__}: {e}")
             return Response(
-            response=str(e),
-            status=500,
-            mimetype='application/json'
-            )   
+                response=str(e),
+                status=500,
+                mimetype='application/json'
+            )
+    
     else:
         return Response( '{}', status=200, mimetype='application/json' )
-
-#@app.route('/rossmann/store/<int:store_id>', methods=['GET'])
-#def get_store(store_id):
-#
-#    try:
-#        # Aqui precisamos consultar os dados da loja
-#        # usando a fonte de dados do projeto.
-#
-#        dados = df[df['store'] == store_id]
-#
-#        if dados.empty:
-#            return Response(
-#                response=f'{{"erro": "Loja {store_id} não encontrada"}}',
-#                status=404,
-#                mimetype='application/json'
-#            )
-#
-#        volume = dados['prediction'].sum()
-#        faturamento = dados['promo_time_week'].sum()
-#
-#        return {
-#            'store': store_id,
-#            'volume': float(volume),
-#            'faturamento': float(faturamento)
-#        }
-#
-#    except Exception as e:
-#
-#        return Response(
-#            response=str(e),
-#            status=500,
-#            mimetype='application/json'
-#        )
     
 # rota simples para o Render confirmar que o serviço está de pé
 @app.route('/', methods=['GET'])
