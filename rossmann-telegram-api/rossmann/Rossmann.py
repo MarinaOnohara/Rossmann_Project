@@ -57,9 +57,9 @@ class Rossmann( object ):
                                              else x['promo2_since_year'], axis=1 )
 
         #promo_interval
-        month_map = {1: 'Jan', 2: 'Fev', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 
+        month_map = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 
                      7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
-        df1['promo_interval'].fillna(0, inplace=True )
+        df1['promo_interval'] = df1['promo_interval'].fillna(0)
         df1['month_map'] = df1['date'].dt.month.map( month_map )
         df1['is_promo'] = df1[['promo_interval', 'month_map']].apply(lambda x: 0 
                                                                      if x['promo_interval'] == 0 
@@ -142,14 +142,14 @@ class Rossmann( object ):
         # year
         df5['year'] = self.year_scaler.transform(
             df5[['year']])
+        
         ### 5.3.1. Encoding
         # state_holiday - One Hot Encoding
         df5 = pd.get_dummies(
-            df5,
-            prefix=['state_holiday'],
+            df5,prefix=['state_holiday'],
             columns=['state_holiday']
-        )
-
+            )
+        
         # Label Encoding
         df5['store_type'] = self.store_type_scaler.transform(df5['store_type'])
 
