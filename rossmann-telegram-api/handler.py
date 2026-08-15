@@ -1,10 +1,11 @@
 import os
-import pickle
+import json
 import pandas as pd
 import sys
 import time
 
 from flask import Flask, request, Response
+from xgboost import XGBRegressor
 from rossmann.Rossmann import Rossmann
 
 
@@ -21,7 +22,8 @@ log(f"arquivos na raiz: {os.listdir('.')}")
 
 log("carregando modelo...")
 #loading model
-model = pickle.load( open('model/model_rossmann.pkl', 'rb'))
+model = XGBRegressor()
+model.load_model('model/model_rossmann.json')
 log(f"modelo carregado em {time.time() - t0:.2f}s")
 
 log("inicializando Flask app...")
@@ -29,44 +31,67 @@ log("inicializando Flask app...")
 app = Flask(__name__)
 log("Flask app criado")
 
-@app.route( '/rossmann/predict', methods=['POST'] )
+
+@app.route('/rossmann/predict', methods=['POST'])
 def rossmann_predict():
-    test_json = request.get_json()
-    
-    if test_json: # sehouver dados
-        try:
-            if isinstance( test_json, dict ): # unique example
-                test_raw = pd.DataFrame( test_json, index=[0] )
-            else: # multiple example
-                test_raw = pd.DataFrame( test_json, columns=test_json[0].keys() )
 
-            # Instantiate Rossmann class
-            pipeline = Rossmann()
+    try:
+        test_json = request.get_json(silent=True)
 
-            # data cleaning
-            df1 = pipeline.data_cleaning( test_raw )
+        log(f"Content-Type: {request.content_type}")
+        log(f"JSON recebido: {test_json}")
 
-            # feature engineering
-            df2 = pipeline.feature_engineering( df1 )
-
-            # data preparation
-            df3 = pipeline.data_preparation( df2 )
-
-            # prediction
-            df_response = pipeline.get_prediction( model, test_raw, df3 )
-
-            return df_response
-        
-        except Exception as e:
+        if not test_json:
             return Response(
-                response=str(e),
-                status=500,
+                response='{"erro": "JSON não informado ou inválido"}',
+                status=400,
                 mimetype='application/json'
             )
-    
-    else:
-        return Response( '{}', status=200, mimetype='application/json' )
-    
+
+        if isinstance(test_json, dict):
+            test_raw = pd.DataFrame(test_json, index=[0])
+        else:
+            test_raw = pd.DataFrame(
+                test_json,
+                columns=test_json[0].keys()
+            )
+
+        log(f"Dados recebidos: {test_raw.to_dict(orient='records')}")
+
+        pipeline = Rossmann()
+
+        # Data cleaning
+        df1 = pipeline.data_cleaning(test_raw)
+
+        # Feature engineering
+        df2 = pipeline.feature_engineering(df1)
+
+        # Data preparation
+        df3 = pipeline.data_preparation(df2)
+
+        # Prediction
+        df_response = pipeline.get_prediction(
+            model,
+            test_raw,
+            df3
+        )
+
+        return Response(
+            response=df_response,
+            status=200,
+            mimetype='application/json'
+        )
+
+    except Exception as e:
+
+        log(f"ERRO: {type(e).__name__}: {e}")
+
+        return Response(
+            response=str(e),
+            status=500,
+            mimetype='application/json'
+        )
+
 # rota simples para o Render confirmar que o serviço está de pé
 @app.route('/', methods=['GET'])
 def health():
