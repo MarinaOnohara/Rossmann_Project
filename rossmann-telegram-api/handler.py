@@ -1,12 +1,12 @@
 import os
-import json as jason
+import json
 import pandas as pd
 import sys
 import time
 
 from flask import Flask, request, Response
 from rossmann.Rossmann import Rossmann
-
+from xgboost import XGBRegressor
 
 def log(msg):
     # print + flush garante que a linha aparece IMEDIATAMENTE nos logs do Render
@@ -21,7 +21,9 @@ log(f"arquivos na raiz: {os.listdir('.')}")
 
 log("carregando modelo...")
 #loading model
-model = jason.load( open('model/model_rossmann.json', 'rb'))
+#model = json.load(open('model/model_rossmann.json', 'rb'))
+model = XGBRegressor()
+model.load_model("model/model_rossmann.json")
 log(f"modelo carregado em {time.time() - t0:.2f}s")
 
 log("inicializando Flask app...")
@@ -58,12 +60,12 @@ def rossmann_predict():
             return df_response
         
         except Exception as e:
+            log(f"ERRO: {type(e).__name__}: {e}")
             return Response(
-                response=str(e),
-                status=500,
-                mimetype='application/json'
-            )
-    
+            response=str(e),
+            status=500,
+            mimetype='application/json'
+            )   
     else:
         return Response( '{}', status=200, mimetype='application/json' )
 
