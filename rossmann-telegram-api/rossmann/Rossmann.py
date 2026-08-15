@@ -89,7 +89,7 @@ class Rossmann( object ):
         df2['day'] = df2['date'].dt.day
 
          # week of year
-        df2['week_year'] = df2['date'].dt.isocalendar().week
+        df2['week_year'] = (df2['date'].dt.isocalendar().week.astype(int))
 
         # year week
         df2['year_week'] = df2['date'].dt.strftime( '%Y-%W' )
