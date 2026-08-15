@@ -145,10 +145,8 @@ class Rossmann( object ):
         
         ### 5.3.1. Encoding
         # state_holiday - One Hot Encoding
-        df5 = pd.get_dummies(
-            df5,prefix=['state_holiday'],
-            columns=['state_holiday']
-            )
+        df5 = pd.get_dummies( df5, prefix=['state_holiday'],
+                             columns=['state_holiday'] )
         
         # Label Encoding
         df5['store_type'] = self.store_type_scaler.transform(df5['store_type'])
