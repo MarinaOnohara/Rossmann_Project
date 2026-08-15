@@ -47,9 +47,9 @@ class Rossmann( object ):
                                                        else x['competition_open_since_year'], axis=1 )
 
         #promo2_since_week
-        df1['promo2_since_week'] = df1.apply(lambda x: x['date'].week 
-                                             if math.isnan( x['promo2_since_week'] ) 
-                                             else x['promo2_since_week'], axis=1 )
+        df1['promo2_since_week'] = df1.apply(lambda x: x['date'].isocalendar().week 
+                                             if math.isnan(x['promo2_since_week'])
+                                             else x['promo2_since_week'],axis=1)
 
         #promo2_since_year
         df1['promo2_since_year'] = df1.apply(lambda x: x['date'].year
@@ -124,31 +124,42 @@ class Rossmann( object ):
         df2 = df2.drop( cols_drop, axis=1 )
         return df2
 
-    def data_preparation( self, df5 ):
+    def data_preparation(self, df5):
+
         ## 5.2. Rescaling
         # competition distance
-        df5['competition_distance'] = self.competition_distance_scaler.fit_transform( df5[['competition_distance']].values )
-
+        df5['competition_distance'] = self.competition_distance_scaler.transform(
+            df5[['competition_distance']])
+        
         # competition time month
-        df5['competition_time_month'] = self.competition_time_month_scaler.fit_transform( df5[['competition_time_month']].values )
+        df5['competition_time_month'] = self.competition_time_month_scaler.transform(
+            df5[['competition_time_month']])
 
         # promo time week
-        df5['promo_time_week'] = self.promo_time_week_scaler.fit_transform(df5[['promo_time_week']].values )
+        df5['promo_time_week'] = self.promo_time_week_scaler.transform(
+            df5[['promo_time_week']])
 
         # year
-        df5['year'] = self.year_scaler.fit_transform( df5[['year']].values )
-
+        df5['year'] = self.year_scaler.transform(
+            df5[['year']])
         ### 5.3.1. Encoding
         # state_holiday - One Hot Encoding
-        df5 = pd.get_dummies( df5, prefix=['state_holiday'],
-                             columns=['state_holiday'] )
+        df5 = pd.get_dummies(
+            df5,
+            prefix=['state_holiday'],
+            columns=['state_holiday']
+        )
 
-        # store_type - Label Encoding
-        df5['store_type'] = self.store_type_scaler.fit_transform(df5['store_type'] )
+        # Label Encoding
+        df5['store_type'] = self.store_type_scaler.transform(df5['store_type'])
 
-        # assortment - Ordinal Encoding
-        assortment_dict = {'basic': 1, 'extra': 2, 'extended': 3}
-        df5['assortment'] = df5['assortment'].map( assortment_dict )
+        # Ordinal
+        assortment_dict = {
+            'basic': 1,
+            'extra': 2,
+            'extended': 3
+            }
+        df5['assortment'] = df5['assortment'].map(assortment_dict)
 
         ### 5.3.3. Nature Transformation
         # day of week
